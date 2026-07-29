@@ -54,3 +54,10 @@ if (anggota.tunggakan > 0) {
     return { berhasil: false, alasan: "ADA_TUNGGAKAN" };
 }
 
+  // Guard 4: Batas Peminjaman Aktif
+console.log("[CEK] Peminjaman aktif sudah 3 atau lebih?");
+if (anggota.peminjamanAktif >= 3) {
+    console.log("[TOLAK] Batas peminjaman aktif tercapai.\n");
+    return { berhasil: false, alasan: "BATAS_PINJAM" };
+}
+
