@@ -135,3 +135,16 @@ console.log("[BERHASIL] Penambahan pertama buku ISBN 978-123.");
 console.log("[ERROR TERTANGKAP]:", error.message);
 }
 
+console.log("\n=== TEST 3: Error Stok Buku Habis ===");
+try {
+  sistem.tambahBuku("978-456", "Buku Langka", "Sejarah", 1); // Stok hanya 1
+sistem.daftarAnggota("A002", "Ani");
+
+sistem.ajukanPeminjaman("978-456", "A001");
+console.log("[BERHASIL] A001 meminjam Buku Langka (stok tersisa: 0).");
+
+  sistem.ajukanPeminjaman("978-456", "A002"); // Harus melempar error karena stok habis
+} catch (error) {
+console.log("[ERROR TERTANGKAP]:", error.message);
+}
+
