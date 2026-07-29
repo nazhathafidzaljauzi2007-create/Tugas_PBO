@@ -47,3 +47,10 @@ if (buku.jenis === "Referensi" && !disetujuiKhusus) {
     return { berhasil: false, alasan: "BUTUH_PERSETUJUAN" };
 }
 
+  // Guard 3: Tunggakan Anggota
+console.log("[CEK] Anggota memiliki tunggakan?");
+if (anggota.tunggakan > 0) {
+    console.log(`[TOLAK] Tunggakan Rp${anggota.tunggakan}.\n`);
+    return { berhasil: false, alasan: "ADA_TUNGGAKAN" };
+}
+
