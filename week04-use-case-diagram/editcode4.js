@@ -112,3 +112,17 @@ lihatRiwayatPeminjaman(idAnggota) {
 }
 }
 
+// ==========================================
+// 3. KODE PENGUJIAN (TRY-CATCH CONSOLE.LOG)
+// ==========================================
+const sistem = new SistemPerpustakaan();
+
+console.log("=== TEST 1: Error ID Anggota Ganda ===");
+try {
+sistem.daftarAnggota("A001", "Budi");
+console.log("[BERHASIL] Pendaftaran pertama anggota A001.");
+  sistem.daftarAnggota("A001", "Siti"); // Harus melempar error
+} catch (error) {
+console.log("[ERROR TERTANGKAP]:", error.message);
+}
+
