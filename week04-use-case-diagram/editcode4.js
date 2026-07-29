@@ -126,3 +126,12 @@ console.log("[BERHASIL] Pendaftaran pertama anggota A001.");
 console.log("[ERROR TERTANGKAP]:", error.message);
 }
 
+console.log("\n=== TEST 2: Error ISBN Ganda ===");
+try {
+sistem.tambahBuku("978-123", "Belajar JS", "Teknologi", 2);
+console.log("[BERHASIL] Penambahan pertama buku ISBN 978-123.");
+  sistem.tambahBuku("978-123", "JS Advanced", "Teknologi", 1); // Harus melempar error
+} catch (error) {
+console.log("[ERROR TERTANGKAP]:", error.message);
+}
+
