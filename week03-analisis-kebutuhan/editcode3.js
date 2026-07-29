@@ -37,3 +37,24 @@ constructor(id, buku, anggota, tanggalPinjam) {
     this.status = "PENGAJUAN";
 }
 
+  // Kebutuhan #9
+hitungSisaMasaPinjam() {
+    throw new Error("Belum diimplementasikan — lihat Minggu 4");
+}
+}
+
+class Pustakawan {
+constructor(id, nama) {
+    this.id = id;
+    this.nama = nama;
+}
+
+tambahBuku(dataBuku) {
+    throw new Error("Belum diimplementasikan — lihat Minggu 4");
+}
+
+  // Kebutuhan #5
+mendaftarkanAnggota(dataAnggota) {
+    throw new Error("Belum diimplementasikan — lihat Minggu 4");
+}
+
