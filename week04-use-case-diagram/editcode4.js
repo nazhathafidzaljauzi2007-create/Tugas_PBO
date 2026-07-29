@@ -148,3 +148,26 @@ console.log("[BERHASIL] A001 meminjam Buku Langka (stok tersisa: 0).");
 console.log("[ERROR TERTANGKAP]:", error.message);
 }
 
+console.log("\n=== TEST 4: Error Batas Perpanjangan Melebihi 1 Kali ===");
+try {
+const p1 = sistem.ajukanPeminjaman("978-123", "A001");
+console.log(`[BERHASIL] A001 meminjam 'Belajar JS' (ID Peminjaman: ${p1.id}).`);
+
+sistem.perpanjangPeminjaman(p1.id);
+console.log("[BERHASIL] Perpanjangan ke-1 disetujui.");
+
+  sistem.perpanjangPeminjaman(p1.id); // Harus melempar error (batas 1x tercapai)
+} catch (error) {
+console.log("[ERROR TERTANGKAP]:", error.message);
+}
+
+console.log("\n=== TEST DEMO USE CASE BARU: lihatRiwayatPeminjaman ===");
+try {
+const riwayat = sistem.lihatRiwayatPeminjaman("A001");
+console.log(`Total riwayat peminjaman A001: ${riwayat.length}`);
+riwayat.forEach((p) => {
+    console.log(`- Peminjaman ID: ${p.id} | Judul: ${p.buku.judul} | Status: ${p.status}`);
+});
+} catch (error) {
+console.log("[ERROR]:", error.message);
+}
