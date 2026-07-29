@@ -40,3 +40,10 @@ if (buku.eksemplarTersedia <= 0) {
     return { berhasil: false, alasan: "STOK_HABIS" };
 }
 
+  // Guard 2: Persetujuan Khusus Buku Referensi
+console.log("[CEK] Apakah buku Referensi dan belum disetujui?");
+if (buku.jenis === "Referensi" && !disetujuiKhusus) {
+    console.log("[TOLAK] Buku referensi memerlukan persetujuan khusus.\n");
+    return { berhasil: false, alasan: "BUTUH_PERSETUJUAN" };
+}
+
