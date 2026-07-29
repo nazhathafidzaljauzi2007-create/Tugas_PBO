@@ -63,3 +63,8 @@ hitungDenda(peminjaman) {
     throw new Error("Belum diimplementasikan — lihat Minggu 4");
 }
 
+  // Kebutuhan #7
+cetakBarcode(buku) {
+    throw new Error("Belum diimplementasikan — lihat Minggu 4");
+}
+
