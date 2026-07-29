@@ -1,0 +1,18 @@
+classDiagram
+    class SistemPerpustakaan {
+        -Array bukuList
+        -Array anggotaList
+        -Array peminjamanList
+        -Number nomorPeminjaman
+
+        +daftarAnggota(id, nama)
+        +tambahBuku(isbn, judul, kategori, jumlahEksemplar)
+        +cariBuku(kataKunci)
+        +ajukanPeminjaman(isbn, idAnggota, tanggalPinjam)
+        +perpanjangPeminjaman(idPeminjaman)
+        +kembalikanBuku(idPeminjaman)
+        +lihatRiwayatPeminjaman(idAnggota)
+
+        #validasiPeminjaman(isbn, idAnggota)
+    }
+    
