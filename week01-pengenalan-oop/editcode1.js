@@ -29,4 +29,53 @@ const pinjamRef = buatPeminjamanProsedural(
   new Date("2026-01-12"));
 
 console.log(`Denda Biasa: Rp${hitungDendaProsedural(pinjamBiasa)}`); // Hasil: 2500
-console.log(`Denda Referensi (x2): Rp${hitungDendaProsedural(pinjamRef)}`); // Hasil: 5000                                                      
+console.log(`Denda Referensi (x2): Rp${hitungDendaProsedural(pinjamRef)}`); // Hasil: 5000
+
+// Pendekatan OOP: data (atribut) dan perilaku (method) dibungkus jadi satu class.
+class PeminjamanBuku {
+  #tarifPerHariTelat = 500;
+  #batasHariPeminjaman = 7;
+
+  // menambahkan parameter 'kategori' di constructor
+  constructor(judulBuku, kategori, tanggalPinjam, tanggalKembali) {
+    this.judulBuku = judulBuku;
+    this.kategori = kategori; // Simpan kategori ke dalam object
+    this.tanggalPinjam = tanggalPinjam;
+    this.tanggalKembali = tanggalKembali;
+  }
+
+  #hitungSelisihHari() {
+    return Math.floor(
+      (this.tanggalKembali - this.tanggalPinjam) / (1000 * 60 * 60 * 24)
+    );
+  }
+
+  // mengupdate method hitungDenda() untuk cek kategorinya
+  hitungDenda() {
+    const telat = Math.max(0, this.#hitungSelisihHari() - this.#batasHariPeminjaman);
+    
+    // Cek kategori objek ini sendiri
+    const pengali = this.kategori === "Referensi" ? 2 : 1;
+    
+    return telat * (this.#tarifPerHariTelat * pengali);
+  }
+}
+
+// membuat objeknya dengan kategori masing-masing
+const pinjam2Biasa = new PeminjamanBuku(
+  "Clean Code",
+  "Umum",
+  new Date("2026-01-01"),
+  new Date("2026-01-12")
+);
+
+const pinjam2Ref = new PeminjamanBuku(
+  "Ensiklopedia",
+  "Referensi",
+  new Date("2026-01-01"),
+  new Date("2026-01-12")
+);
+
+// menampilkan hasil
+console.log(`Denda OOP (Biasa): Rp${pinjam2Biasa.hitungDenda()}`);
+console.log(`Denda OOP (Referensi x2): Rp${pinjam2Ref.hitungDenda()}`);
