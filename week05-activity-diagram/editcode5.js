@@ -61,3 +61,36 @@ if (anggota.peminjamanAktif >= 3) {
     return { berhasil: false, alasan: "BATAS_PINJAM" };
 }
 
+  // Eksekusi Peminjaman via Method (Lebih rapi & aman dari side-effect)
+buku.kurangiStok();
+anggota.tambahPeminjamanAktif();
+
+const catatan = {
+    isbn: buku.isbn,
+    idAnggota: anggota.id,
+    status: "DIPINJAM",
+    jenisBuku: buku.jenis
+};
+
+console.log("[AKSI] Buat catatan peminjaman.");
+console.log("[AKSI] Kurangi stok buku.");
+console.log("[AKSI] Kirim konfirmasi.");
+console.log("[SELESAI] Peminjaman berhasil.\n");
+return { berhasil: true, catatan };
+}
+
+// ================= UJI COBA PENGAJUAN =================
+const bukuCleanCode = new Buku("978-1", "Clean Code", 1, "Umum");
+const bukuKamus = new Buku("978-4", "Kamus Bahasa", 1, "Referensi");
+
+const rani = new Anggota(1, "Rani");
+const dewi = new Anggota(4, "Dewi");
+
+// 1. Buku Umum (Berhasil)
+prosesPeminjaman(bukuCleanCode, rani);
+
+// 2. Buku Referensi Tanpa Persetujuan Khusus (Ditolak)
+prosesPeminjaman(bukuKamus, dewi, false);
+
+// 3. Buku Referensi Dengan Persetujuan Khusus (Berhasil)
+prosesPeminjaman(bukuKamus, dewi, true);
