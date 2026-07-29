@@ -58,3 +58,8 @@ mendaftarkanAnggota(dataAnggota) {
     throw new Error("Belum diimplementasikan — lihat Minggu 4");
 }
 
+  // Kebutuhan #6
+hitungDenda(peminjaman) {
+    throw new Error("Belum diimplementasikan — lihat Minggu 4");
+}
+
