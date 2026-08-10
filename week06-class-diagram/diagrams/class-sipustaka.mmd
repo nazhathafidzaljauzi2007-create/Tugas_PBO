@@ -1,0 +1,88 @@
+classDiagram
+  class Buku {
+    +String isbn
+    +String judul
+    +String kategori
+    +Number jumlahEksemplar
+    +Number eksemplarTersedia
+  }
+
+  class Anggota {
+    +Number id
+    +String nama
+    +String email
+  }
+
+  class Peminjaman {
+    +Number id
+    +Date tanggalPinjam
+    +String status
+  }
+
+  class Perpustakaan {
+    -Buku[] buku
+    -Anggota[] anggota
+    -Peminjaman[] peminjaman
+    -Number nomorPeminjaman
+    +tambahBuku(buku)
+    +tambahAnggota(anggota)
+    +pinjamkan(isbn, idAnggota, tanggal)
+    +daftarPeminjamanAktif()
+  }
+
+  Perpustakaan "1" o-- "0..*" Buku : mengelola
+  Perpustakaan "1" o-- "0..*" Anggota : mendaftarkan
+  Perpustakaan "1" o-- "0..*" Peminjaman : mencatat
+  Peminjaman "0..*" --> "1" Buku : buku
+  Peminjaman "0..*" --> "1" Anggota : peminjam
+
+// pustakawan berasosiasi dengan perpustakaan
+classDiagram
+    class Buku {
+        +String isbn
+        +String judul
+        +String kategori
+        +int jumlahEksemplar
+        +int eksemplarTersedia
+    }
+
+    class Anggota {
+        +int id
+        +String nama
+        +String email
+    }
+
+    class Pustakawan {
+        +int id
+        +String nama
+        +tambahBukuKePerpustakaan(perpustakaan, buku)
+    }
+
+    class Peminjaman {
+        +int id
+        +Buku buku
+        +Anggota anggota
+        +Date tanggalPinjam
+        +String status
+    }
+
+    class Perpustakaan {
+        -List~Buku~ buku
+        -List~Anggota~ anggota
+        -List~Peminjaman~ peminjaman
+        -List~Pustakawan~ pustakawan
+        -int nomorPeminjaman
+        +tambahBuku(buku)
+        +tambahAnggota(anggota)
+        +tambahPustakawan(pustakawan)
+        +pinjamkan(isbn, idAnggota, tanggal)
+        +daftarPeminjamanAktif()
+    }
+
+    Perpustakaan "1" o-- "*" Buku : mengagregasi
+    Perpustakaan "1" o-- "*" Anggota : mengagregasi
+    Perpustakaan "1" o-- "*" Peminjaman : mengagregasi
+    Perpustakaan "1" o-- "*" Pustakawan : mempekerjakan
+    Peminjaman "*" --> "1" Buku : mencatat
+    Peminjaman "*" --> "1" Anggota : dipinjam oleh
+    Pustakawan "1..*" --> "1..*" Perpustakaan : mengelola
